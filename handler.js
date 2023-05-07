@@ -1,6 +1,14 @@
 'use strict';
 const DynamoDB = require("aws-sdk/clients/dynamodb");
 const documentClient = new DynamoDB.DocumentClient({region: "us-east-1"})
+const NOTES_TABLE_NAME = process.env.NOTES_TABLE_NAME;
+
+const send = (statusCode, data) => {
+  return {
+    statusCode,
+    body: JSON.stringify(data)
+  }
+}
 
 module.exports.createNote = async (event, context, cb) => {
   let data = JSON.parse(event.body);
@@ -15,41 +23,65 @@ module.exports.createNote = async (event, context, cb) => {
       ConditionExpression: "attribute_not_exists(notesId)"
     }
     await documentClient.put(param).promise();
-    cb(null, {
-      statusCode: 201,
-      body: JSON.stringify(data) 
-    })
+    cb(null, send(200, data));
   } catch(err) {
-    cb(null, {
-      statusCode: 500,
-      body: JSON.stringify(err.message)
-    })
+    cb(null, send(500, err.message));
   }
-  return {
-    statusCode: 201,
-    body: JSON.stringify("A new note created!")
-  };
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
   // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
 
-module.exports.updateNote = async (event) => {
-  let noteId = event.pathParameters.id;
-  return {
-    statusCode: 200,
-    body: JSON.stringify("The note with id: " + noteId + "has been updated!")
-  };
+module.exports.updateNote = async (event, context, cb) => {
+  let notesId = event.pathParameters.id;
+  let data = JSON.parse(event.body);
+  try {
+    console.log("notesId = " + JSON.stringify(notesId))
+    const params = {
+      TableName: NOTES_TABLE_NAME,
+      Key: {notesId},
+      updateExpression: "set #title = :title, #body = :body",
+      ExpressionAttributeNames: {
+        '#title': 'title',
+        '#body': 'body'
+      },
+      ExpressionAttributeValues: {
+        ':title': data.title,
+        ':body': data.body
+      },
+      ConditionExpression: "attribute_exists(notesId)"
+    }
+    await documentClient.update(params).promise();
+    cb(null, send(201, data));
+  } catch(err) {
+    cb(null, send(500, err.message));
+  }
 };
 
-module.exports.deleteNote = async (event) => {
-  let noteId = event.pathParameters.id;
-  return {
-    statusCode: 200,
-    body: JSON.stringify("The note with id: " + noteId + "has been deteletd!")
-  };
+module.exports.deleteNote = async (event, context, cb) => {
+  let notesId = event.pathParameters.id;
+  try {
+    const params = {
+      TableName: NOTES_TABLE_NAME,
+      Key: { notesId },
+      ConditionExpression: "attribute_exists(notesId)"
+    }
+    await documentClient.delete(params).promise();
+    cb(null, send(201, notesId));
+  } catch (err) {
+    cb(null, send(500, err.message));
+  }
 };
 
-module.exports.getAllNotes = async (event) => {
+module.exports.getAllNotes = async (event, context, cb) => {
+  try {
+    const params = {
+      TableName: NOTES_TABLE_NAME
+    }
+    const notes = await documentClient.scan(params).promise();
+    cb(null, send(201, notes));
+  } catch (err) {
+    cb(null, send(500, err.message));
+  }
   return {
     statusCode: 200,
     body: JSON.stringify("All notes are returned!")
