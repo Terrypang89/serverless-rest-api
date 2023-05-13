@@ -23,7 +23,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-1
 
 functions:
@@ -95,7 +95,7 @@ functions:
             name: userpool_authorizer
             type: COGNITO_USER_POOLS
             arn: !GetAtt cognitoUserPool.Arn
-            # arn: ${ssm:/notes/dev/userpoolId}
+            # arn: ${ssm:/notes/${self:provider.stage}/userpoolId}
             # arn: arn:aws:cognito-idp:us-east-1:109418755717:userpool/us-east-1_BstaKBOon
 plugins:
   - serverless-iam-roles-per-function
