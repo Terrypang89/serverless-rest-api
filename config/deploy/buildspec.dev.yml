@@ -1,0 +1,26 @@
+version: 0.2
+        
+phases:
+  install:
+    on-failure: ABORT
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo Installing serverless CLI
+      - sudo chown -R root:$(whoami) /usr/local/lib/node_modules/
+      - sudo chmod -R 775 /usr/local/lib/node_modules/
+      - npm i -g serverless@3 --unsafe-perm=true --allow-root
+      - echo Installing npm dependecies of notes services
+      - npm install
+  build:
+    on-failure: ABORT
+    commands:
+      - echo deploying resources
+      - serverless deploy --stage dev
+artifacts:
+  files:
+    - my-artifact/*
+  name: MyProjectArtifacts
+cache:
+  paths:
+    - 'node_modules/**/*'
