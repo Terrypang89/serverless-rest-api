@@ -9,7 +9,7 @@ phases:
       - echo Installing serverless CLI
       - sudo chown -R root:$(whoami) /usr/local/lib/node_modules/
       - sudo chmod -R 775 /usr/local/lib/node_modules/
-      - npm i -g serverless@2
+      - npm i -g serverless@3 --unsafe-perm=true --allow-root
       - echo Installing npm dependecies of notes services
       - npm install
   build:
