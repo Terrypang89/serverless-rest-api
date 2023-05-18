@@ -1,0 +1,5 @@
+TEST_ROOT="https://9rixnyb71c.execute-api.us-east-1.amazonaws.com/dev/"
+USER_POOL_ID="us-east-1_wMzKgW88U"
+CLIENT_ID="1vde4712q3f770chl938tbtokh"
+USERNAME="Test"
+PASSWORD="Pak30326@"
