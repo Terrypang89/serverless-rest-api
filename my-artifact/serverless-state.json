@@ -198,7 +198,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z/notes-api.zip"
+                "S3Key": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z/notes-api.zip"
               },
               "Handler": "authorizer.handler",
               "Runtime": "nodejs12.x",
@@ -233,7 +233,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z/notes-api.zip"
+                "S3Key": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z/notes-api.zip"
               },
               "Handler": "handler.createNote",
               "Runtime": "nodejs12.x",
@@ -267,7 +267,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z/notes-api.zip"
+                "S3Key": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z/notes-api.zip"
               },
               "Handler": "handler.updateNote",
               "Runtime": "nodejs12.x",
@@ -301,7 +301,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z/notes-api.zip"
+                "S3Key": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z/notes-api.zip"
               },
               "Handler": "handler.deleteNote",
               "Runtime": "nodejs12.x",
@@ -335,7 +335,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z/notes-api.zip"
+                "S3Key": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z/notes-api.zip"
               },
               "Handler": "handler.getAllNotes",
               "Runtime": "nodejs12.x",
@@ -362,54 +362,54 @@
               "GetAllNotesLogGroup"
             ]
           },
-          "AuthorizerLambdaVersionljA54XzugITAKDvB0dL2bycBkQcGaSLC5hKpyfu9fm4": {
+          "AuthorizerLambdaVersionzQfZZGbQUnge4QM4JA0kDuXO7TicmUFy3iMOLhPUU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AuthorizerLambdaFunction"
               },
-              "CodeSha256": "EgphiTv34sMHCZcdCu++Xd/5x+eJ3Nf04cZJGTmBKN8="
+              "CodeSha256": "94D4S6ZtZaZVPDWCsSE/DskK8efuZ7a3kk07AeqkcXE="
             }
           },
-          "CreateNoteLambdaVersion5jvU1htXSZXKOizIFxGYVmtkLD8MA8GzIfjKxMF9YEs": {
+          "CreateNoteLambdaVersionOONXSUjNuuDDlJ6aTUgKXuYQ5LrqysmIK9j3aJtYEMk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateNoteLambdaFunction"
               },
-              "CodeSha256": "EgphiTv34sMHCZcdCu++Xd/5x+eJ3Nf04cZJGTmBKN8="
+              "CodeSha256": "94D4S6ZtZaZVPDWCsSE/DskK8efuZ7a3kk07AeqkcXE="
             }
           },
-          "UpdateNoteLambdaVersionsDdK2ixb6k1Eif72bJDoSZlI6xGprIVI6LCMmo": {
+          "UpdateNoteLambdaVersionAdktaSEFL7AqAlbuqXg6kWJHLDrQEBqIHK8DZlhSw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateNoteLambdaFunction"
               },
-              "CodeSha256": "EgphiTv34sMHCZcdCu++Xd/5x+eJ3Nf04cZJGTmBKN8="
+              "CodeSha256": "94D4S6ZtZaZVPDWCsSE/DskK8efuZ7a3kk07AeqkcXE="
             }
           },
-          "DeleteNoteLambdaVersionh8YWHaUmSgthF2W9uMatMrhwIVffODmEuIc1r8": {
+          "DeleteNoteLambdaVersionoHuqxjGsY65TxT9RyJn9XbMi06pDzaQnTX9w9wNk4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DeleteNoteLambdaFunction"
               },
-              "CodeSha256": "EgphiTv34sMHCZcdCu++Xd/5x+eJ3Nf04cZJGTmBKN8="
+              "CodeSha256": "94D4S6ZtZaZVPDWCsSE/DskK8efuZ7a3kk07AeqkcXE="
             }
           },
-          "GetAllNotesLambdaVersionDOGMOHdxCevaseXKh6kbSmaYrHByp6nPwPD5qAp4Nk": {
+          "GetAllNotesLambdaVersionCuG07MEcCpTHL2MbImG8GwDXwzCeVhfmkuTTZU9FCc4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetAllNotesLambdaFunction"
               },
-              "CodeSha256": "EgphiTv34sMHCZcdCu++Xd/5x+eJ3Nf04cZJGTmBKN8="
+              "CodeSha256": "94D4S6ZtZaZVPDWCsSE/DskK8efuZ7a3kk07AeqkcXE="
             }
           },
           "ApiGatewayRestApi": {
@@ -698,7 +698,7 @@
               ]
             }
           },
-          "ApiGatewayDeployment1684061067867": {
+          "ApiGatewayDeployment1684578099690": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1267,6 +1267,12 @@
               "AllowedOAuthFlows": [
                 "implicit"
               ],
+              "ExplicitAuthFlows": [
+                "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+                "ALLOW_REFRESH_TOKEN_AUTH",
+                "ALLOW_CUSTOM_AUTH",
+                "ALLOW_USER_SRP_AUTH"
+              ],
               "CallbackURLs": [
                 "http://localhost:3000"
               ]
@@ -1307,7 +1313,7 @@
           "AuthorizerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AuthorizerLambdaVersionljA54XzugITAKDvB0dL2bycBkQcGaSLC5hKpyfu9fm4"
+              "Ref": "AuthorizerLambdaVersionzQfZZGbQUnge4QM4JA0kDuXO7TicmUFy3iMOLhPUU"
             },
             "Export": {
               "Name": "sls-notes-api-dev-AuthorizerLambdaFunctionQualifiedArn"
@@ -1316,7 +1322,7 @@
           "CreateNoteLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateNoteLambdaVersion5jvU1htXSZXKOizIFxGYVmtkLD8MA8GzIfjKxMF9YEs"
+              "Ref": "CreateNoteLambdaVersionOONXSUjNuuDDlJ6aTUgKXuYQ5LrqysmIK9j3aJtYEMk"
             },
             "Export": {
               "Name": "sls-notes-api-dev-CreateNoteLambdaFunctionQualifiedArn"
@@ -1325,7 +1331,7 @@
           "UpdateNoteLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateNoteLambdaVersionsDdK2ixb6k1Eif72bJDoSZlI6xGprIVI6LCMmo"
+              "Ref": "UpdateNoteLambdaVersionAdktaSEFL7AqAlbuqXg6kWJHLDrQEBqIHK8DZlhSw"
             },
             "Export": {
               "Name": "sls-notes-api-dev-UpdateNoteLambdaFunctionQualifiedArn"
@@ -1334,7 +1340,7 @@
           "DeleteNoteLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteNoteLambdaVersionh8YWHaUmSgthF2W9uMatMrhwIVffODmEuIc1r8"
+              "Ref": "DeleteNoteLambdaVersionoHuqxjGsY65TxT9RyJn9XbMi06pDzaQnTX9w9wNk4"
             },
             "Export": {
               "Name": "sls-notes-api-dev-DeleteNoteLambdaFunctionQualifiedArn"
@@ -1343,7 +1349,7 @@
           "GetAllNotesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetAllNotesLambdaVersionDOGMOHdxCevaseXKh6kbSmaYrHByp6nPwPD5qAp4Nk"
+              "Ref": "GetAllNotesLambdaVersionCuG07MEcCpTHL2MbImG8GwDXwzCeVhfmkuTTZU9FCc4"
             },
             "Export": {
               "Name": "sls-notes-api-dev-GetAllNotesLambdaFunctionQualifiedArn"
@@ -1483,7 +1489,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AuthorizerLambdaVersionljA54XzugITAKDvB0dL2bycBkQcGaSLC5hKpyfu9fm4"
+        "versionLogicalId": "AuthorizerLambdaVersionzQfZZGbQUnge4QM4JA0kDuXO7TicmUFy3iMOLhPUU"
       },
       "createNote": {
         "handler": "handler.createNote",
@@ -1521,7 +1527,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CreateNoteLambdaVersion5jvU1htXSZXKOizIFxGYVmtkLD8MA8GzIfjKxMF9YEs"
+        "versionLogicalId": "CreateNoteLambdaVersionOONXSUjNuuDDlJ6aTUgKXuYQ5LrqysmIK9j3aJtYEMk"
       },
       "updateNote": {
         "handler": "handler.updateNote",
@@ -1551,7 +1557,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UpdateNoteLambdaVersionsDdK2ixb6k1Eif72bJDoSZlI6xGprIVI6LCMmo"
+        "versionLogicalId": "UpdateNoteLambdaVersionAdktaSEFL7AqAlbuqXg6kWJHLDrQEBqIHK8DZlhSw"
       },
       "deleteNote": {
         "handler": "handler.deleteNote",
@@ -1589,7 +1595,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DeleteNoteLambdaVersionh8YWHaUmSgthF2W9uMatMrhwIVffODmEuIc1r8"
+        "versionLogicalId": "DeleteNoteLambdaVersionoHuqxjGsY65TxT9RyJn9XbMi06pDzaQnTX9w9wNk4"
       },
       "getAllNotes": {
         "handler": "handler.getAllNotes",
@@ -1633,7 +1639,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetAllNotesLambdaVersionDOGMOHdxCevaseXKh6kbSmaYrHByp6nPwPD5qAp4Nk"
+        "versionLogicalId": "GetAllNotesLambdaVersionCuG07MEcCpTHL2MbImG8GwDXwzCeVhfmkuTTZU9FCc4"
       }
     },
     "resources": {
@@ -1682,6 +1688,12 @@
             ],
             "AllowedOAuthFlows": [
               "implicit"
+            ],
+            "ExplicitAuthFlows": [
+              "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+              "ALLOW_REFRESH_TOKEN_AUTH",
+              "ALLOW_CUSTOM_AUTH",
+              "ALLOW_USER_SRP_AUTH"
             ],
             "CallbackURLs": [
               "http://localhost:3000"
@@ -1736,7 +1748,7 @@
     "artifact": "/home/toufu/Project/aws/serverless/.serverless/notes-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/notes-api/dev/1684061073257-2023-05-14T10:44:33.257Z",
+    "artifactDirectoryName": "serverless/notes-api/dev/1684578104750-2023-05-20T10:21:44.750Z",
     "artifact": "notes-api.zip"
   }
 }
