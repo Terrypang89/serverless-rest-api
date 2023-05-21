@@ -59,7 +59,7 @@ module.exports.updateNote = async (event, context, cb) => {
       ConditionExpression: "attribute_exists(notesId)"
     }
     await documentClient.update(params).promise();
-    cb(null, send(201, data));
+    cb(null, send(200, data));
   } catch(err) {
     cb(null, send(500, err.message));
   }
