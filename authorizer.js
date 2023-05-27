@@ -1,3 +1,4 @@
+// token based lambda authorizer
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
 const COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID;
 const COGNITO_WEB_CLIENT_ID = process.env.COGNITO_WEB_CLIENT_ID;
@@ -11,6 +12,7 @@ const jwtVerifier = CognitoJwtVerifier.create({
     clientId: COGNITO_WEB_CLIENT_ID
 })
 
+// for lambda authorizer to generate IAM policy
 const generatePolicy = (principalId, effect, resource) => {
     var tmp = resource.split(':');
     var apiGatewayArnTmp = tmp[5].split('/');
@@ -40,12 +42,15 @@ const generatePolicy = (principalId, effect, resource) => {
 }
 
 exports.handler = async (event, context, callback) => {
-    // lambda authorizer code
+    // token get from lambda authorizer
     var token = event.authorizationToken;
     console.log(token);
+
     try {
+        // verify token generated from cognito 
         const payload = await jwtVerifier.verify(token);
         console.log(JSON.stringify(payload));
+        // lambda authorizer create IAM policy for event method 
         callback(null, generatePolicy("user", "Allow", event.methodArn));
     } catch(err) {
         callback("Error: invalid token")

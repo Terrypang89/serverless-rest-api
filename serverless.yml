@@ -28,6 +28,7 @@ provider:
 
 functions:
   authorizer:
+    # access to authorizer.js handler function
     handler: authorizer.handler
     environment:
       COGNITO_USERPOOL_ID: !Ref cognitoUserPool
@@ -91,7 +92,7 @@ functions:
       - http:
           method: get
           path: notes
-          authorizer: 
+          authorizer:
             name: userpool_authorizer
             type: COGNITO_USER_POOLS
             arn: !GetAtt cognitoUserPool.Arn
