@@ -1,5 +1,7 @@
 'use strict';
-const DynamoDB = require("aws-sdk/clients/dynamodb");
+//const DynamoDB = require("aws-sdk/clients/dynamodb");
+import { DynamoDB } from 'aws-sdk';
+import { APIGatewayEvent, Context, APIGatewayAuthorizerCallback } from 'aws-lambda';
 const documentClient = new DynamoDB.DocumentClient({
   region: "us-east-1",
   maxRetries: 3,
@@ -16,9 +18,9 @@ const send = (statusCode, data) => {
   }
 }
 
-module.exports.createNote = async (event, context, cb) => {
+export const createNote = async (event: APIGatewayEvent, context: Context, cb: APIGatewayAuthorizerCallback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  let data = JSON.parse(event.body);
+  let data = JSON.parse(event.body as string);
   try {
     const param = {
       TableName: "notes",
@@ -30,6 +32,10 @@ module.exports.createNote = async (event, context, cb) => {
       ConditionExpression: "attribute_not_exists(notesId)"
     }
     await documentClient.put(param).promise();
+    // const send: (statusCode: any, body: string) => {
+    //   statusCode: any;
+    //   body: string;
+    // }
     cb(null, send(200, data));
   } catch(err) {
     cb(null, send(500, err.message));
@@ -38,10 +44,10 @@ module.exports.createNote = async (event, context, cb) => {
   // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
 
-module.exports.updateNote = async (event, context, cb) => {
+export const updateNote = async (event: APIGatewayEvent, context: Context, cb: APIGatewayAuthorizerCallback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  let notesId = event.pathParameters.id;
-  let data = JSON.parse(event.body);
+  let notesId = event.pathParameters?.id;
+  let data = JSON.parse(event.body as string);
   try {
     console.log("notesId = " + JSON.stringify(notesId))
     const params = {
@@ -65,12 +71,12 @@ module.exports.updateNote = async (event, context, cb) => {
   }
 };
 
-module.exports.deleteNote = async (event, context, cb) => {
+export const deleteNote = async (event: APIGatewayEvent, context: Context, cb: APIGatewayAuthorizerCallback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  let notesId = event.pathParameters.id;
+  let notesId = event.pathParameters?.id;
   try {
     const params = {
-      TableName: NOTES_TABLE_NAME,
+      TableName: NOTES_TABLE_NAME as string,
       Key: { notesId },
       ConditionExpression: "attribute_exists(notesId)"
     }
@@ -81,11 +87,11 @@ module.exports.deleteNote = async (event, context, cb) => {
   }
 };
 
-module.exports.getAllNotes = async (event, context, cb) => {
+export const getAllNotes = async (event: APIGatewayEvent, context: Context, cb: APIGatewayAuthorizerCallback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
     const params = {
-      TableName: NOTES_TABLE_NAME
+      TableName: NOTES_TABLE_NAME as string
     }
     const notes = await documentClient.scan(params).promise();
     cb(null, send(201, notes));

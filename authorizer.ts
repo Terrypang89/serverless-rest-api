@@ -1,8 +1,11 @@
 // token based lambda authorizer
-const { CognitoJwtVerifier } = require("aws-jwt-verify");
+import { CognitoJwtVerifier } from "aws-jwt-verify";
+import { APIGatewayTokenAuthorizerEvent, Context, AuthResponse, PolicyDocument } from 'aws-lambda';
 const COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID;
 const COGNITO_WEB_CLIENT_ID = process.env.COGNITO_WEB_CLIENT_ID;
 
+// export interface Request {
+// const jwtVerifier = CognitoJwtVerifier.create({
 const jwtVerifier = CognitoJwtVerifier.create({
     // userPoolId: "us-east-1_BstaKBOon",
     // tokenUse: "id",
@@ -13,11 +16,12 @@ const jwtVerifier = CognitoJwtVerifier.create({
 })
 
 // for lambda authorizer to generate IAM policy
-const generatePolicy = (principalId, effect, resource) => {
+const generatePolicy = (principalId, effect, resource): AuthResponse => {
+    let authReponse = {} as AuthResponse;
     var tmp = resource.split(':');
     var apiGatewayArnTmp = tmp[5].split('/');
-    var resource = tmp[0] + ":" + tmp[1] + ":" + tmp[2] + ":" + tmp[3] + ":" + tmp[4] + ":" + apiGatewayArnTmp[0] + "/*/*" ;
-    var authReponse = {};
+    resource = tmp[0] + ":" + tmp[1] + ":" + tmp[2] + ":" + tmp[3] + ":" + tmp[4] + ":" + apiGatewayArnTmp[0] + "/*/*" ;
+    // var authReponse = {};
 
     authReponse.principalId = principalId;
 
@@ -41,7 +45,7 @@ const generatePolicy = (principalId, effect, resource) => {
     return authReponse;
 }
 
-exports.handler = async (event, context, callback) => {
+export const handler = async (event: APIGatewayTokenAuthorizerEvent, context: Context, cb: APIGatewayAuthorizerCallback) => {
     // token get from lambda authorizer
     var token = event.authorizationToken;
     console.log(token);
@@ -51,9 +55,9 @@ exports.handler = async (event, context, callback) => {
         const payload = await jwtVerifier.verify(token);
         console.log(JSON.stringify(payload));
         // lambda authorizer create IAM policy for event method 
-        callback(null, generatePolicy("user", "Allow", event.methodArn));
+        cb(null, generatePolicy("user", "Allow", event.methodArn));
     } catch(err) {
-        callback("Error: invalid token")
+        cb("Error: invalid token")
     }
 //     switch(token) {
 //         case "allow":

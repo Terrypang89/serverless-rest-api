@@ -99,6 +99,7 @@ functions:
             # arn: ${ssm:/notes/${self:provider.stage}/userpoolId}
             # arn: arn:aws:cognito-idp:us-east-1:109418755717:userpool/us-east-1_BstaKBOon
 plugins:
+  - serverless-plugin-typescript
   - serverless-iam-roles-per-function
 
 # add cloud formation resource templete here
